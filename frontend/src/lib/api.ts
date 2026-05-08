@@ -1,8 +1,17 @@
+import createClient from 'openapi-fetch';
 import { z } from 'zod';
 import { appConfig } from './config';
+import type { components, paths } from './openapi';
 
-export const workflowSchema = z.enum(['photogrammetry_to_gltf', 'mesh_repair', 'cad_boolean']);
-export type Workflow = z.infer<typeof workflowSchema>;
+export type Workflow = components['schemas']['Workflow'];
+export type Job = z.infer<typeof jobSchema>;
+export type Tool = z.infer<typeof toolSchema>;
+
+export const workflowSchema = z.enum([
+  'photogrammetry_to_gltf',
+  'mesh_repair',
+  'cad_boolean',
+] satisfies Workflow[]);
 
 export const artifactSchema = z.object({
   name: z.string(),
@@ -36,8 +45,6 @@ export const jobSchema = z.object({
   finished_at: z.string().optional(),
 });
 
-export type Job = z.infer<typeof jobSchema>;
-
 const toolSchema = z.object({
   name: z.string(),
   binary: z.string(),
@@ -46,34 +53,42 @@ const toolSchema = z.object({
   path: z.string().optional(),
 });
 
-export type Tool = z.infer<typeof toolSchema>;
-
 const jobsResponseSchema = z.object({ jobs: z.array(jobSchema) });
 const toolsResponseSchema = z.object({ tools: z.array(toolSchema) });
+const clients = new Map<string, ReturnType<typeof createClient<paths>>>();
+
+function apiClient(baseUrl: string) {
+  const normalized = baseUrl.replace(/\/$/, '');
+  const existing = clients.get(normalized);
+  if (existing) return existing;
+  const created = createClient<paths>({ baseUrl: normalized });
+  clients.set(normalized, created);
+  return created;
+}
+
+function requireData<T>(response: { data?: T; error?: unknown; response: Response }, label: string): T {
+  if (response.error || !response.data) {
+    throw new Error(`${label} failed: ${response.response.status}`);
+  }
+  return response.data;
+}
 
 export async function listTools(baseUrl = appConfig.apiBaseUrl): Promise<Tool[]> {
-  const response = await fetch(`${baseUrl}/api/v1/tools`);
-  if (!response.ok) throw new Error(`Tool check failed: ${response.status}`);
-  return toolsResponseSchema.parse(await response.json()).tools;
+  const result = await apiClient(baseUrl).GET('/api/v1/tools');
+  return toolsResponseSchema.parse(requireData(result, 'Tool check')).tools;
 }
 
 export async function listJobs(baseUrl = appConfig.apiBaseUrl): Promise<Job[]> {
-  const response = await fetch(`${baseUrl}/api/v1/jobs`);
-  if (!response.ok) throw new Error(`Job list failed: ${response.status}`);
-  return jobsResponseSchema.parse(await response.json()).jobs;
+  const result = await apiClient(baseUrl).GET('/api/v1/jobs');
+  return jobsResponseSchema.parse(requireData(result, 'Job list')).jobs;
 }
 
 export async function createJob(
   payload: { workflow: Workflow; name: string; parameters?: Record<string, string> },
   baseUrl = appConfig.apiBaseUrl,
 ): Promise<Job> {
-  const response = await fetch(`${baseUrl}/api/v1/jobs`, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
-  if (!response.ok) throw new Error(`Job create failed: ${response.status}`);
-  return jobSchema.parse(await response.json());
+  const result = await apiClient(baseUrl).POST('/api/v1/jobs', { body: payload });
+  return jobSchema.parse(requireData(result, 'Job create'));
 }
 
 export async function createPhotoJob(
@@ -87,10 +102,9 @@ export async function createPhotoJob(
   form.set('parameters', JSON.stringify(parameters));
   files.forEach((file) => form.append('files', file));
 
-  const response = await fetch(`${baseUrl}/api/v1/jobs`, {
-    method: 'POST',
-    body: form,
+  const result = await apiClient(baseUrl).POST('/api/v1/jobs', {
+    body: form as unknown as paths['/api/v1/jobs']['post']['requestBody']['content']['multipart/form-data'],
+    bodySerializer: (body) => body as unknown as FormData,
   });
-  if (!response.ok) throw new Error(`Photo job failed: ${response.status}`);
-  return jobSchema.parse(await response.json());
+  return jobSchema.parse(requireData(result, 'Photo job'));
 }
