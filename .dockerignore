@@ -1,0 +1,13 @@
+.git
+.github
+node_modules
+frontend/node_modules
+docs
+dist
+tmp
+coverage
+.env
+.env.*
+!.env.example
+var
+
