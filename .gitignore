@@ -1,0 +1,51 @@
+# Operating systems
+.DS_Store
+Thumbs.db
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# Logs and temporary files
+*.log
+tmp/
+temp/
+.cache/
+coverage/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+dist-data/
+
+# Go
+bin/
+*.test
+*.out
+
+# Build outputs that are not the GitHub Pages publish directory
+dist/
+build/
+
+# Tooling
+.gitleaks-report.json
+
