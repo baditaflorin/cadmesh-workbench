@@ -28,4 +28,3 @@ curl -X POST http://localhost:8080/api/v1/jobs \
   -H 'content-type: application/json' \
   -d '{"workflow":"photogrammetry_to_gltf","name":"demo","parameters":{"quality":"preview"}}'
 ```
-

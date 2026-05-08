@@ -30,4 +30,3 @@ Frontend code never shells out to native tools. Backend code owns job execution 
 
 - Monorepo with one flat `src/`: rejected because it blurs runtime boundaries.
 - Backend serving frontend assets: rejected because Pages is the required public frontend surface.
-

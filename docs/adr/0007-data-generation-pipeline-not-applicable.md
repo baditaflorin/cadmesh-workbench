@@ -19,4 +19,3 @@ There is no `make data` implementation beyond a no-op target documenting that Mo
 ## Alternatives considered
 
 - Treating uploaded job outputs as static release data: rejected because user jobs are runtime state.
-

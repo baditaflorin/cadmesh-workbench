@@ -26,4 +26,3 @@ The workflow has no external CI dependency. Contributors must install hooks loca
 ## Alternatives considered
 
 - Lefthook: acceptable later, but plain hooks are transparent and have no extra dependency.
-

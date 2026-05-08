@@ -26,4 +26,3 @@ Contributors get one local workflow. Pre-push can run the full fast suite.
 
 - GitHub Actions: rejected by project constraint.
 - Manual browser-only testing: rejected because Pages routing and build output need repeatable checks.
-

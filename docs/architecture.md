@@ -37,4 +37,3 @@ flowchart LR
 ```
 
 The GitHub Pages boundary is explicit: the backend never serves frontend assets, and the frontend never contains secrets.
-

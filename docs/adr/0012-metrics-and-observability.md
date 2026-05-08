@@ -27,4 +27,3 @@ Operators can scrape the backend. The Pages frontend collects no PII and sends n
 ## Alternatives considered
 
 - Plausible or beacon analytics: rejected for v1 because usage insight is not required.
-

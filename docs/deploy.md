@@ -17,4 +17,3 @@ Revert the publishing commit that changed `docs/`, then push `main`.
 ## Custom Domain
 
 No custom domain is configured for v1. To add one, create a `CNAME` file in `docs/` and point DNS to GitHub Pages according to GitHub's Pages documentation.
-

@@ -28,4 +28,3 @@ The API and frontend can be deployed independently. The backend image does not s
 
 - Single server serving everything: rejected because Pages is required.
 - Exposing Go directly on the public port: rejected because nginx owns TLS and rate limiting.
-

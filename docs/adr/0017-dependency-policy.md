@@ -25,4 +25,3 @@ Dependency updates must be reviewed intentionally. Large libraries are lazy-load
 ## Alternatives considered
 
 - Bespoke CAD or photogrammetry implementations: rejected as unsafe and unrealistic for v1.
-

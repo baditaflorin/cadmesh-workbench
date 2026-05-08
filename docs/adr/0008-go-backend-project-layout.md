@@ -27,4 +27,3 @@ Internal packages cannot be imported externally. Additional CLIs can be added wi
 ## Alternatives considered
 
 - Single `main.go`: rejected because job orchestration and HTTP concerns would become tangled.
-

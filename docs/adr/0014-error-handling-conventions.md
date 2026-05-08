@@ -21,4 +21,3 @@ Failures can be inspected through the API and logs. Native tool failures become 
 ## Alternatives considered
 
 - Panicking on unexpected tool failures: rejected because one bad job must not bring down the API.
-

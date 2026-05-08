@@ -33,4 +33,3 @@ The API can evolve with explicit versioning. Backend and frontend tests can vali
 
 - GraphQL: rejected because the domain is job-oriented and REST fits artifact downloads better.
 - Hand-written ad hoc JSON: rejected because v1 needs a documented contract.
-

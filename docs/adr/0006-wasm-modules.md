@@ -26,4 +26,3 @@ The first load stays small. WASM and viewer code are only loaded after the user 
 
 - Eagerly loading CAD/photogrammetry WASM: rejected for payload size and Pages header limitations.
 - Browser-only COLMAP/OpenMVS: rejected for v1 reliability.
-

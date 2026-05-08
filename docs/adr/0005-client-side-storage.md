@@ -22,4 +22,3 @@ Use IndexedDB for project metadata and generated lightweight mesh snapshots, OPF
 
 - Server-side persistence: rejected for v1 because it would require accounts, auth, and backup policy.
 - `localStorage` for everything: rejected because CAD and mesh payloads exceed its practical limits.
-

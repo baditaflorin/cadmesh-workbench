@@ -32,4 +32,3 @@ Deployment can configure the backend without code changes. Pages builds can burn
 ## Alternatives considered
 
 - Checked-in config with environment overrides: rejected to reduce accidental secret exposure.
-

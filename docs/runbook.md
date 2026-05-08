@@ -41,4 +41,3 @@ Back up the backend data directory configured by `CADMESH_DATA_DIR`. It contains
 ## Failure modes
 
 If Prometheus is down, the app continues serving. If native tools are missing, `/api/v1/tools` reports them as unavailable and submitted jobs fall back to preview artifacts when possible.
-

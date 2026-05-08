@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="cadmesh-workbench icon">
+  <rect width="128" height="128" rx="24" fill="#17202a"/>
+  <path d="M28 84V44l36-20 36 20v40l-36 20-36-20Z" fill="#f6f7f9"/>
+  <path d="M64 24v80M28 44l36 20 36-20M28 84l36-20 36 20" fill="none" stroke="#2e7d6b" stroke-width="8" stroke-linejoin="round"/>
+  <circle cx="64" cy="64" r="9" fill="#e4572e"/>
+</svg>
+

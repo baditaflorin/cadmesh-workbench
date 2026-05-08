@@ -20,4 +20,3 @@ Docker log collectors can parse backend logs. Browser users are not asked to ins
 
 - Text logs: rejected because JSON is easier to aggregate.
 - Verbose browser console logging: rejected for production polish.
-

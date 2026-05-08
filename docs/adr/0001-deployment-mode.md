@@ -26,4 +26,3 @@ The frontend is a static GitHub Pages app published from `main` branch `/docs`. 
 
 - Mode A, pure GitHub Pages: rejected because browser-only COLMAP/OpenMVS and large B-rep processing are not realistic for v1.
 - Mode B, Pages plus pre-built data: rejected because users need to run new jobs on their own photos and models.
-

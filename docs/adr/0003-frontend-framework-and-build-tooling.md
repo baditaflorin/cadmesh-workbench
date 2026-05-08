@@ -24,4 +24,3 @@ Vite builds into the repository `docs/` directory with base path `/cadmesh-workb
 
 - Next.js: rejected because the static Pages output and repo simplicity are better served by Vite.
 - Vanilla TypeScript: rejected because complex UI state and error boundaries benefit from React.
-

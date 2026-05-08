@@ -24,4 +24,3 @@ Every frontend publishing change is visible in git diffs. Rollback is a normal g
 
 - `gh-pages` branch: rejected because local publishing would be more complicated.
 - `main /`: rejected because source and publish artifacts would be mixed at repo root.
-
