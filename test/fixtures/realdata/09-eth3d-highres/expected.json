@@ -1,0 +1,16 @@
+{
+  "fixture": "09-eth3d-highres",
+  "expected": {
+    "kind": "photo-set",
+    "format": "photogrammetry-manifest",
+    "route": "photos",
+    "state": "loaded-too-many",
+    "minConfidence": 0.78,
+    "properties": {
+      "imageCountAtLeast": 12,
+      "warnLarge": true,
+      "orientationIssue": true
+    },
+    "mustIncludeAnomalies": ["large", "orientation"]
+  }
+}

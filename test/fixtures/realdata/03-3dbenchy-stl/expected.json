@@ -1,0 +1,14 @@
+{
+  "fixture": "03-3dbenchy-stl",
+  "expected": {
+    "kind": "mesh",
+    "format": "stl-ascii",
+    "route": "mesh",
+    "state": "loaded-some",
+    "minConfidence": 0.88,
+    "properties": {
+      "trianglesAtLeast": 4,
+      "boundsRequired": true
+    }
+  }
+}

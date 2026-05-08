@@ -1,0 +1,16 @@
+{
+  "fixture": "01-mcmaster-step",
+  "expected": {
+    "kind": "cad",
+    "format": "step",
+    "route": "cad",
+    "state": "loaded-some",
+    "minConfidence": 0.86,
+    "properties": {
+      "unit": "millimetre",
+      "schema": "AP214",
+      "componentCountAtLeast": 1
+    },
+    "mustIncludeSuggestions": ["OpenCascade"]
+  }
+}

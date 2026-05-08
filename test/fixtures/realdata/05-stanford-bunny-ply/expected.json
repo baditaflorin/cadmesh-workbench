@@ -1,0 +1,15 @@
+{
+  "fixture": "05-stanford-bunny-ply",
+  "expected": {
+    "kind": "mesh",
+    "format": "ply",
+    "route": "mesh",
+    "state": "loaded-some",
+    "minConfidence": 0.78,
+    "properties": {
+      "verticesAtLeast": 5,
+      "facesAtLeast": 3
+    },
+    "mustIncludeAnomalies": ["boundary"]
+  }
+}

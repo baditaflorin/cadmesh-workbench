@@ -1,0 +1,18 @@
+﻿ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('sample mechanical assembly with CRLF and BOM'),'2;1');
+FILE_NAME('sample_assembly.step','2026-05-08T00:00:00',('File Examples'),('cadmesh-workbench'),'','','');
+FILE_SCHEMA(('AP242_MANAGED_MODEL_BASED_3D_ENGINEERING_MIM_LF { 1 0 10303 442 1 1 4 }'));
+ENDSEC;
+DATA;
+#10=PRODUCT('gearbox-housing','Housing','',());
+#11=PRODUCT('shaft','Shaft','',());
+#12=PRODUCT('fastener','Fastener','',());
+#20=PRODUCT_DEFINITION_FORMATION('1','',#10);
+#21=PRODUCT_DEFINITION_FORMATION('1','',#11);
+#22=PRODUCT_DEFINITION_FORMATION('1','',#12);
+#30=SI_UNIT(.MILLI.,.METRE.);
+#31=LENGTH_UNIT();
+ENDSEC;
+END-ISO-10303-21;
+

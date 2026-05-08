@@ -1,0 +1,16 @@
+{
+  "fixture": "02-step-assembly",
+  "expected": {
+    "kind": "cad",
+    "format": "step",
+    "route": "cad",
+    "state": "loaded-some",
+    "minConfidence": 0.84,
+    "properties": {
+      "unit": "millimetre",
+      "schema": "AP242",
+      "componentCountAtLeast": 3,
+      "normalizedLineEndings": true
+    }
+  }
+}

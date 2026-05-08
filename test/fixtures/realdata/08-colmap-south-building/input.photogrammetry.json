@@ -1,0 +1,16 @@
+{
+  "source": "COLMAP South Building",
+  "source_url": "https://colmap.org/",
+  "images": [
+    { "name": "south_0001.jpg", "bytes": 2800000, "width": 3072, "height": 2304, "exif_orientation": 1 },
+    { "name": "south_0002.jpg", "bytes": 2810000, "width": 3072, "height": 2304, "exif_orientation": 1 },
+    { "name": "south_0003.jpg", "bytes": 2790000, "width": 3072, "height": 2304, "exif_orientation": 1 },
+    { "name": "south_0004.jpg", "bytes": 2820000, "width": 3072, "height": 2304, "exif_orientation": 1 },
+    { "name": "south_0005.jpg", "bytes": 2830000, "width": 3072, "height": 2304, "exif_orientation": 1 },
+    { "name": "south_0006.jpg", "bytes": 2840000, "width": 3072, "height": 2304, "exif_orientation": 1 },
+    { "name": "south_0007.jpg", "bytes": 2825000, "width": 3072, "height": 2304, "exif_orientation": 1 },
+    { "name": "south_0008.jpg", "bytes": 2815000, "width": 3072, "height": 2304, "exif_orientation": 1 },
+    { "name": "south_0009.jpg", "bytes": 2805000, "width": 3072, "height": 2304, "exif_orientation": 1 },
+    { "name": "south_0010.jpg", "bytes": 2835000, "width": 3072, "height": 2304, "exif_orientation": 1 }
+  ]
+}

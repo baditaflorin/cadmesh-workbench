@@ -1,0 +1,15 @@
+{
+  "fixture": "08-colmap-south-building",
+  "expected": {
+    "kind": "photo-set",
+    "format": "photogrammetry-manifest",
+    "route": "photos",
+    "state": "loaded-many",
+    "minConfidence": 0.82,
+    "properties": {
+      "imageCountAtLeast": 10,
+      "nativeRequired": true
+    },
+    "mustIncludeSuggestions": ["COLMAP"]
+  }
+}

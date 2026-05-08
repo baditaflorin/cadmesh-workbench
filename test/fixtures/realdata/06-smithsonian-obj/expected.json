@@ -1,0 +1,16 @@
+{
+  "fixture": "06-smithsonian-obj",
+  "expected": {
+    "kind": "mesh",
+    "format": "obj",
+    "route": "mesh",
+    "state": "loaded-some",
+    "minConfidence": 0.82,
+    "properties": {
+      "verticesAtLeast": 4,
+      "facesAtLeast": 2,
+      "textureDependencies": true
+    },
+    "mustIncludeAnomalies": ["material"]
+  }
+}

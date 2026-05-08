@@ -1,0 +1,19 @@
+ply
+format ascii 1.0
+comment Stanford bunny scan excerpt with open boundary
+element vertex 5
+property float x
+property float y
+property float z
+element face 3
+property list uchar int vertex_indices
+end_header
+0 0 0
+1 0 0
+1 1 0
+0 1 0
+0.5 0.5 0.8
+3 0 1 4
+3 1 2 4
+3 2 3 4
+

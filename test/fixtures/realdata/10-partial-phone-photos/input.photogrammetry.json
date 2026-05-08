@@ -1,0 +1,9 @@
+{
+  "source": "partial phone export",
+  "source_url": "local-phone-export",
+  "images": [
+    { "name": "IMG_1001.HEIC", "bytes": 0, "width": 0, "height": 0, "cloud_placeholder": true },
+    { "name": "IMG_1002.jpg", "bytes": 2100000, "width": 4032, "height": 3024, "exif_orientation": 1 },
+    { "name": "IMG_1003.jpg", "bytes": 2200000, "width": 4032, "height": 3024, "exif_orientation": 1 }
+  ]
+}

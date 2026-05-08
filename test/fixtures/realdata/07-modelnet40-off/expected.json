@@ -1,0 +1,16 @@
+{
+  "fixture": "07-modelnet40-off",
+  "expected": {
+    "kind": "mesh",
+    "format": "off",
+    "route": "mesh",
+    "state": "loaded-some",
+    "minConfidence": 0.8,
+    "properties": {
+      "verticesAtLeast": 8,
+      "facesAtLeast": 6,
+      "convertible": true
+    },
+    "mustIncludeSuggestions": ["convert"]
+  }
+}

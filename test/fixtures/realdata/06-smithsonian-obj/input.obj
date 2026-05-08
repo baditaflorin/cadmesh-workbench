@@ -1,0 +1,15 @@
+# Smithsonian Apollo 11 Command Module representative OBJ dependency fixture
+mtllib command_module.mtl
+o Apollo11_Command_Module
+v 0 0 0
+v 2.9 0 0
+v 0 2.9 0
+v 0 0 3.2
+vt 0 0
+vt 1 0
+vt 0 1
+vn 0 0 1
+usemtl heat_shield_texture
+f 1/1/1 2/2/1 3/3/1
+f 1/1/1 3/3/1 4/2/1
+

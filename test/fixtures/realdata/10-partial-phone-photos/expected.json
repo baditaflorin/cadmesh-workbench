@@ -1,0 +1,16 @@
+{
+  "fixture": "10-partial-phone-photos",
+  "expected": {
+    "kind": "photo-set",
+    "format": "photogrammetry-manifest",
+    "route": "photos",
+    "state": "error-recoverable",
+    "minConfidence": 0.5,
+    "properties": {
+      "imageCountAtLeast": 2,
+      "tooFewImages": true
+    },
+    "mustIncludeAnomalies": ["placeholder", "too few"],
+    "mustIncludeSuggestions": ["more overlapping photos"]
+  }
+}

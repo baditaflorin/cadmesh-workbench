@@ -1,0 +1,90 @@
+{
+  "source": "ETH3D high-res multi-view old computer",
+  "source_url": "https://eth3d.ethz.ch/datasets",
+  "images": [
+    {
+      "name": "old_computer_0001.jpg",
+      "bytes": 9200000,
+      "width": 6048,
+      "height": 4032,
+      "exif_orientation": 6
+    },
+    {
+      "name": "old_computer_0002.jpg",
+      "bytes": 9300000,
+      "width": 6048,
+      "height": 4032,
+      "exif_orientation": 6
+    },
+    {
+      "name": "old_computer_0003.jpg",
+      "bytes": 9400000,
+      "width": 6048,
+      "height": 4032,
+      "exif_orientation": 6
+    },
+    {
+      "name": "old_computer_0004.jpg",
+      "bytes": 9500000,
+      "width": 6048,
+      "height": 4032,
+      "exif_orientation": 6
+    },
+    {
+      "name": "old_computer_0005.jpg",
+      "bytes": 9600000,
+      "width": 6048,
+      "height": 4032,
+      "exif_orientation": 6
+    },
+    {
+      "name": "old_computer_0006.jpg",
+      "bytes": 9700000,
+      "width": 6048,
+      "height": 4032,
+      "exif_orientation": 6
+    },
+    {
+      "name": "old_computer_0007.jpg",
+      "bytes": 9800000,
+      "width": 6048,
+      "height": 4032,
+      "exif_orientation": 6
+    },
+    {
+      "name": "old_computer_0008.jpg",
+      "bytes": 9900000,
+      "width": 6048,
+      "height": 4032,
+      "exif_orientation": 6
+    },
+    {
+      "name": "old_computer_0009.jpg",
+      "bytes": 9100000,
+      "width": 6048,
+      "height": 4032,
+      "exif_orientation": 6
+    },
+    {
+      "name": "old_computer_0010.jpg",
+      "bytes": 9250000,
+      "width": 6048,
+      "height": 4032,
+      "exif_orientation": 6
+    },
+    {
+      "name": "old_computer_0011.jpg",
+      "bytes": 9350000,
+      "width": 6048,
+      "height": 4032,
+      "exif_orientation": 6
+    },
+    {
+      "name": "old_computer_0012.jpg",
+      "bytes": 9450000,
+      "width": 6048,
+      "height": 4032,
+      "exif_orientation": 6
+    }
+  ]
+}

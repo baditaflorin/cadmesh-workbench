@@ -1,0 +1,12 @@
+{
+  "fixture": "04-thingi10k-truncated-stl",
+  "expected": {
+    "kind": "mesh",
+    "format": "stl-ascii",
+    "route": "mesh",
+    "state": "error-recoverable",
+    "minConfidence": 0.55,
+    "mustIncludeAnomalies": ["truncated"],
+    "mustIncludeSuggestions": ["re-export"]
+  }
+}
