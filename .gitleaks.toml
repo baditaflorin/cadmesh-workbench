@@ -1,0 +1,10 @@
+title = "cadmesh-workbench gitleaks config"
+
+[allowlist]
+description = "Allow documented public project URLs and placeholders"
+regexes = [
+  '''https://github\.com/baditaflorin/cadmesh-workbench''',
+  '''https://www\.paypal\.com/paypalme/florinbadita''',
+  '''your-domain\.example''',
+]
+

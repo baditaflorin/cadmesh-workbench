@@ -10,4 +10,3 @@ Thank you for helping improve `cadmesh-workbench`.
 4. Run `make lint`, `make test`, and `make smoke` before pushing.
 
 Do not commit secrets, real `.env` files, private keys, generated credentials, or internal hostnames.
-

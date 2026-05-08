@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.7
 
-ARG GO_VERSION=1.26.2
+ARG GO_VERSION=1.26.3
 
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS builder
 WORKDIR /src
@@ -50,4 +50,3 @@ EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 CMD ["/app/server", "healthcheck"]
 
 ENTRYPOINT ["/app/server"]
-

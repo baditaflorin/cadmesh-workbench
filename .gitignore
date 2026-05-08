@@ -22,6 +22,8 @@ tmp/
 temp/
 .cache/
 coverage/
+playwright-report/
+test-results/
 
 # Node
 node_modules/
@@ -48,4 +50,3 @@ build/
 
 # Tooling
 .gitleaks-report.json
-

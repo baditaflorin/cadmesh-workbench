@@ -89,7 +89,7 @@ func (s *Server) health(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) ready(w http.ResponseWriter, r *http.Request) {
-	if err := os.MkdirAll(s.cfg.DataDir, 0o755); err != nil {
+	if err := os.MkdirAll(s.cfg.DataDir, 0o750); err != nil {
 		writeError(w, http.StatusServiceUnavailable, "data directory is not writable")
 		return
 	}
@@ -206,7 +206,7 @@ type multipartInput struct {
 
 func (s *Server) saveInputs(r *http.Request, jobID string, parts []multipartInput) ([]jobs.InputFile, error) {
 	paths := s.store.Paths(jobID)
-	if err := os.MkdirAll(paths.InputsDir, 0o755); err != nil {
+	if err := os.MkdirAll(paths.InputsDir, 0o750); err != nil {
 		return nil, err
 	}
 	inputs := make([]jobs.InputFile, 0, len(parts))
@@ -215,13 +215,16 @@ func (s *Server) saveInputs(r *http.Request, jobID string, parts []multipartInpu
 		if err != nil {
 			return nil, err
 		}
-		defer src.Close()
+		defer func() {
+			_ = src.Close()
+		}()
 		name := safeFilename(part.Filename)
 		if name == "" {
 			return nil, fmt.Errorf("invalid input filename")
 		}
 		dstPath := filepath.Join(paths.InputsDir, name)
-		dst, err := os.Create(dstPath)
+		// #nosec G304 -- filename is reduced to filepath.Base and written inside the job input directory.
+		dst, err := os.OpenFile(dstPath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0o600)
 		if err != nil {
 			return nil, err
 		}

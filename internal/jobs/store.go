@@ -27,7 +27,7 @@ type Paths struct {
 }
 
 func NewStore(dataDir string) (*Store, error) {
-	if err := os.MkdirAll(filepath.Join(dataDir, "jobs"), 0o755); err != nil {
+	if err := os.MkdirAll(filepath.Join(dataDir, "jobs"), 0o750); err != nil {
 		return nil, err
 	}
 
@@ -54,10 +54,10 @@ func (s *Store) Create(req JobRequest) (*Job, error) {
 	}
 
 	paths := s.Paths(job.ID)
-	if err := os.MkdirAll(paths.InputsDir, 0o755); err != nil {
+	if err := os.MkdirAll(paths.InputsDir, 0o750); err != nil {
 		return nil, err
 	}
-	if err := os.MkdirAll(paths.ArtifactsDir, 0o755); err != nil {
+	if err := os.MkdirAll(paths.ArtifactsDir, 0o750); err != nil {
 		return nil, err
 	}
 
@@ -137,6 +137,7 @@ func (s *Store) load() error {
 			continue
 		}
 		path := filepath.Join(root, entry.Name(), "job.json")
+		// #nosec G304 -- path is constrained to the configured job store root.
 		body, err := os.ReadFile(path)
 		if err != nil {
 			continue
@@ -152,7 +153,7 @@ func (s *Store) load() error {
 
 func (s *Store) persist(job *Job) error {
 	paths := s.Paths(job.ID)
-	if err := os.MkdirAll(paths.JobDir, 0o755); err != nil {
+	if err := os.MkdirAll(paths.JobDir, 0o750); err != nil {
 		return err
 	}
 	body, err := json.MarshalIndent(job, "", "  ")
@@ -161,7 +162,7 @@ func (s *Store) persist(job *Job) error {
 	}
 	tmp := filepath.Join(paths.JobDir, "job.json.tmp")
 	dst := filepath.Join(paths.JobDir, "job.json")
-	if err := os.WriteFile(tmp, body, 0o644); err != nil {
+	if err := os.WriteFile(tmp, body, 0o600); err != nil {
 		return err
 	}
 	return os.Rename(tmp, dst)

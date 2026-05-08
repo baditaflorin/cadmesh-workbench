@@ -1,5 +1,7 @@
 node_modules
 coverage
+playwright-report
+test-results
 tmp
 var
 docs/assets
@@ -9,4 +11,3 @@ docs/icon.svg
 docs/sw.js
 package-lock.json
 go.sum
-

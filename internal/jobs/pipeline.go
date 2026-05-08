@@ -25,7 +25,7 @@ func (p *Pipeline) Run(ctx context.Context, job Job, paths Paths) (Result, error
 	if err := ctx.Err(); err != nil {
 		return Result{}, err
 	}
-	if err := os.MkdirAll(paths.ArtifactsDir, 0o755); err != nil {
+	if err := os.MkdirAll(paths.ArtifactsDir, 0o750); err != nil {
 		return Result{}, err
 	}
 
@@ -104,7 +104,7 @@ func writeJSON(path string, value any) error {
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(path, body, 0o644)
+	return os.WriteFile(path, body, 0o600)
 }
 
 func writePreviewGLTF(path string, label string) error {
@@ -193,5 +193,5 @@ func writePreviewGLTF(path string, label string) error {
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(path, body, 0o644)
+	return os.WriteFile(path, body, 0o600)
 }

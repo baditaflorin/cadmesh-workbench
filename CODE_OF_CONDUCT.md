@@ -20,4 +20,3 @@ Unacceptable behavior includes harassment, discriminatory language, personal att
 ## Enforcement
 
 Project maintainers may remove, edit, or reject contributions that do not align with this Code of Conduct.
-

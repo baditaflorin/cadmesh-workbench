@@ -10,25 +10,25 @@ paths:
     get:
       summary: Health check
       responses:
-        "200":
+        '200':
           description: Server is alive
   /readyz:
     get:
       summary: Readiness check
       responses:
-        "200":
+        '200':
           description: Server can accept requests
   /metrics:
     get:
       summary: Prometheus metrics
       responses:
-        "200":
+        '200':
           description: Metrics text
   /api/v1/tools:
     get:
       summary: List native tool availability
       responses:
-        "200":
+        '200':
           description: Tool list
           content:
             application/json:
@@ -38,12 +38,12 @@ paths:
                   tools:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Tool"
+                      $ref: '#/components/schemas/Tool'
   /api/v1/jobs:
     get:
       summary: List jobs
       responses:
-        "200":
+        '200':
           description: Job list
           content:
             application/json:
@@ -53,7 +53,7 @@ paths:
                   jobs:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Job"
+                      $ref: '#/components/schemas/Job'
     post:
       summary: Create a job
       requestBody:
@@ -61,7 +61,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/JobRequest"
+              $ref: '#/components/schemas/JobRequest'
           multipart/form-data:
             schema:
               type: object
@@ -70,7 +70,7 @@ paths:
                 - name
               properties:
                 workflow:
-                  $ref: "#/components/schemas/Workflow"
+                  $ref: '#/components/schemas/Workflow'
                 name:
                   type: string
                 parameters:
@@ -82,12 +82,12 @@ paths:
                     type: string
                     format: binary
       responses:
-        "202":
+        '202':
           description: Job accepted
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Job"
+                $ref: '#/components/schemas/Job'
   /api/v1/jobs/{id}:
     get:
       summary: Get a job
@@ -98,13 +98,13 @@ paths:
           schema:
             type: string
       responses:
-        "200":
+        '200':
           description: Job
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Job"
-        "404":
+                $ref: '#/components/schemas/Job'
+        '404':
           description: Job not found
   /api/v1/jobs/{id}/artifacts/{artifact}:
     get:
@@ -121,9 +121,9 @@ paths:
           schema:
             type: string
       responses:
-        "200":
+        '200':
           description: Artifact bytes
-        "404":
+        '404':
           description: Artifact not found
 components:
   schemas:
@@ -191,7 +191,7 @@ components:
         - name
       properties:
         workflow:
-          $ref: "#/components/schemas/Workflow"
+          $ref: '#/components/schemas/Workflow'
         name:
           type: string
           minLength: 1
@@ -213,11 +213,11 @@ components:
         id:
           type: string
         workflow:
-          $ref: "#/components/schemas/Workflow"
+          $ref: '#/components/schemas/Workflow'
         name:
           type: string
         status:
-          $ref: "#/components/schemas/Status"
+          $ref: '#/components/schemas/Status'
         parameters:
           type: object
           additionalProperties:
@@ -225,11 +225,11 @@ components:
         inputs:
           type: array
           items:
-            $ref: "#/components/schemas/InputFile"
+            $ref: '#/components/schemas/InputFile'
         artifacts:
           type: array
           items:
-            $ref: "#/components/schemas/Artifact"
+            $ref: '#/components/schemas/Artifact'
         logs:
           type: array
           items:
@@ -248,4 +248,3 @@ components:
         finished_at:
           type: string
           format: date-time
-

@@ -9,15 +9,14 @@ services:
         CREATED: local
     image: cadmesh-workbench:dev
     environment:
-      CADMESH_ADDR: ":8080"
+      CADMESH_ADDR: ':8080'
       CADMESH_DATA_DIR: /data
-      CADMESH_ALLOWED_ORIGINS: "http://localhost:5173,http://localhost:4173"
-      CADMESH_PUBLIC_BASE_URL: "http://localhost:8080"
+      CADMESH_ALLOWED_ORIGINS: 'http://localhost:5173,http://localhost:4173'
+      CADMESH_PUBLIC_BASE_URL: 'http://localhost:8080'
     ports:
-      - "8080:8080"
+      - '8080:8080'
     volumes:
       - cadmesh-dev-data:/data
 
 volumes:
   cadmesh-dev-data:
-
