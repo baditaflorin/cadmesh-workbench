@@ -1,0 +1,251 @@
+openapi: 3.1.0
+info:
+  title: cadmesh-workbench API
+  version: 0.1.0
+  description: Runtime API for CAD, mesh repair, and photogrammetry-to-glTF jobs.
+servers:
+  - url: http://localhost:8080
+paths:
+  /healthz:
+    get:
+      summary: Health check
+      responses:
+        "200":
+          description: Server is alive
+  /readyz:
+    get:
+      summary: Readiness check
+      responses:
+        "200":
+          description: Server can accept requests
+  /metrics:
+    get:
+      summary: Prometheus metrics
+      responses:
+        "200":
+          description: Metrics text
+  /api/v1/tools:
+    get:
+      summary: List native tool availability
+      responses:
+        "200":
+          description: Tool list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tools:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Tool"
+  /api/v1/jobs:
+    get:
+      summary: List jobs
+      responses:
+        "200":
+          description: Job list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobs:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Job"
+    post:
+      summary: Create a job
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/JobRequest"
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - workflow
+                - name
+              properties:
+                workflow:
+                  $ref: "#/components/schemas/Workflow"
+                name:
+                  type: string
+                parameters:
+                  type: string
+                  description: JSON object encoded as a string.
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        "202":
+          description: Job accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+  /api/v1/jobs/{id}:
+    get:
+      summary: Get a job
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Job
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+        "404":
+          description: Job not found
+  /api/v1/jobs/{id}/artifacts/{artifact}:
+    get:
+      summary: Download a job artifact
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: artifact
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Artifact bytes
+        "404":
+          description: Artifact not found
+components:
+  schemas:
+    Workflow:
+      type: string
+      enum:
+        - photogrammetry_to_gltf
+        - mesh_repair
+        - cad_boolean
+    Status:
+      type: string
+      enum:
+        - queued
+        - running
+        - succeeded
+        - failed
+    Tool:
+      type: object
+      required:
+        - name
+        - binary
+        - purpose
+        - available
+      properties:
+        name:
+          type: string
+        binary:
+          type: string
+        purpose:
+          type: string
+        available:
+          type: boolean
+        path:
+          type: string
+    InputFile:
+      type: object
+      properties:
+        name:
+          type: string
+        content_type:
+          type: string
+        size:
+          type: integer
+          format: int64
+    Artifact:
+      type: object
+      properties:
+        name:
+          type: string
+        content_type:
+          type: string
+        size:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+          format: uri
+    JobRequest:
+      type: object
+      required:
+        - workflow
+        - name
+      properties:
+        workflow:
+          $ref: "#/components/schemas/Workflow"
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+    Job:
+      type: object
+      required:
+        - id
+        - workflow
+        - name
+        - status
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: string
+        workflow:
+          $ref: "#/components/schemas/Workflow"
+        name:
+          type: string
+        status:
+          $ref: "#/components/schemas/Status"
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+        inputs:
+          type: array
+          items:
+            $ref: "#/components/schemas/InputFile"
+        artifacts:
+          type: array
+          items:
+            $ref: "#/components/schemas/Artifact"
+        logs:
+          type: array
+          items:
+            type: string
+        error:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        started_at:
+          type: string
+          format: date-time
+        finished_at:
+          type: string
+          format: date-time
+
