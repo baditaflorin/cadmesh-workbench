@@ -4,13 +4,13 @@ Date: 2026-05-08
 
 Scope: v1 `cadmesh-workbench` as published at https://baditaflorin.github.io/cadmesh-workbench/
 
-Current happy path tested against the audit set:
+Current happy path tested against the audit set at audit time:
 
 - CAD tab: configure synthetic primitive and boolean preview.
 - Mesh tab: load built-in sample mesh, repair, decimate, export GLB.
 - Photos tab: select images and queue a backend job; backend emits deterministic preview artifacts unless native tooling is present.
 
-No Phase 2 ADRs, picklist, fixtures, or code were generated for this audit.
+No Phase 2 ADRs, picklist, fixtures, or code had been generated when this audit was written.
 
 ## Real-World Inputs
 
@@ -65,6 +65,21 @@ No Phase 2 ADRs, picklist, fixtures, or code were generated for this audit.
 6. **Large-input honesty:** inputs above the v2 size budget show an estimate or warning within 300 ms and never freeze the UI thread for more than 100 ms.
 7. **Cancellation:** any operation expected to exceed 5 seconds is cancellable, and cancellation leaves the previous coherent state intact.
 8. **Error quality:** every boundary error states what failed, why in CAD/mesh/photogrammetry terms, and the next step.
+
+## Implementation Result
+
+Updated: 2026-05-09
+
+The audit set is now committed as real-data fixtures in `test/fixtures/realdata/`, and the executable coverage lives in `frontend/src/features/intelligence/analyzer.fixtures.test.ts`.
+
+Pass-rate trend:
+
+| Run                     | Result                                                                                           |
+| ----------------------- | ------------------------------------------------------------------------------------------------ |
+| Audit baseline          | 0/10 useful first diagnostics; v1 required synthetic sample/manual setup for CAD and mesh inputs |
+| After Phase 2 substance | 10/10 useful first diagnostics; 10/10 deterministic manifests; 10/10 no silent wrongness checks  |
+
+The backend still produces preview-only artifacts unless native CAD/mesh/photogrammetry binaries are wired into the runtime path, but this is now explicit in the API job record, UI, and `report.json` provenance instead of looking like a completed native reconstruction.
 
 ## Out Of Scope For Phase 2 Substance
 

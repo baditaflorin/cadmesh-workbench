@@ -16,9 +16,10 @@ Screenshot: https://raw.githubusercontent.com/baditaflorin/cadmesh-workbench/mai
 ## What It Does
 
 - Parametric CAD preview with backend job queuing for B-rep boolean workflows.
+- Source Inspector that auto-detects STEP, STL, PLY, OBJ, OFF, glTF/GLB, and photo-set manifests with confidence and anomalies.
 - Browser mesh repair and decimation worker with GLB export from the live Three.js scene.
 - Photo upload flow that submits photogrammetry-to-glTF jobs to the Docker backend.
-- Backend tool detection for OpenCascade/OCCT, COLMAP, OpenMVS, Open3D, and Draco adapters.
+- Backend tool detection for OpenCascade/OCCT, MeshLab, COLMAP, OpenMVS, Open3D, Blender, and Draco adapters.
 - Published Pages UI shows version and source commit in the top bar.
 
 ## Quickstart
@@ -58,6 +59,8 @@ ADRs: https://github.com/baditaflorin/cadmesh-workbench/tree/main/docs/adr
 API: https://github.com/baditaflorin/cadmesh-workbench/blob/main/api/openapi.yaml
 
 Deploy guide: https://github.com/baditaflorin/cadmesh-workbench/blob/main/deploy/README.md
+
+Phase 2 substance postmortem: https://github.com/baditaflorin/cadmesh-workbench/blob/main/docs/postmortem-phase2-substance.md
 
 ## Security
 
