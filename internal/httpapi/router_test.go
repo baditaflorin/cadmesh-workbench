@@ -52,4 +52,9 @@ func TestCreateJobHappyPath(t *testing.T) {
 		got, err := store.Get(created.ID)
 		return err == nil && got.Status == jobs.StatusSucceeded && len(got.Artifacts) == 2
 	}, 2*time.Second, 25*time.Millisecond)
+
+	got, err := store.Get(created.ID)
+	require.NoError(t, err)
+	require.Equal(t, jobs.ResultModePreviewOnly, got.ResultMode)
+	require.NotEmpty(t, got.Warnings)
 }

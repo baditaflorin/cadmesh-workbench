@@ -75,6 +75,8 @@ func (q *Queue) run(ctx context.Context, id string) {
 		job.FinishedAt = &finished
 		job.Artifacts = result.Artifacts
 		job.Logs = append(job.Logs, result.Logs...)
+		job.ResultMode = result.ResultMode
+		job.Warnings = append([]string(nil), result.Warnings...)
 		job.Error = errMsg
 	})
 	if updateErr != nil {

@@ -13,9 +13,11 @@ type Tool struct {
 func DetectTools() []Tool {
 	specs := []Tool{
 		{Name: "OpenCascade/OCCT", Binary: "DRAWEXE", Purpose: "B-rep CAD inspection and kernel-backed operations"},
+		{Name: "MeshLab", Binary: "meshlabserver", Purpose: "mesh inspection, cleanup, and decimation"},
 		{Name: "COLMAP", Binary: "colmap", Purpose: "structure-from-motion reconstruction"},
 		{Name: "OpenMVS", Binary: "ReconstructMesh", Purpose: "dense reconstruction and mesh generation"},
 		{Name: "Open3D", Binary: "open3d", Purpose: "mesh cleanup, normals, simplification, and conversion"},
+		{Name: "Blender", Binary: "blender", Purpose: "bmesh cleanup and glTF conversion fallback"},
 		{Name: "Draco", Binary: "draco_encoder", Purpose: "glTF mesh compression"},
 	}
 

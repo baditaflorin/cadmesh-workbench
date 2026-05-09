@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: cadmesh-workbench API
-  version: 0.1.0
+  version: 0.2.0
   description: Runtime API for CAD, mesh repair, and photogrammetry-to-glTF jobs.
 servers:
   - url: http://localhost:8080
@@ -140,6 +140,12 @@ components:
         - running
         - succeeded
         - failed
+    ResultMode:
+      type: string
+      enum:
+        - native
+        - preview-only
+        - unsupported
     Tool:
       type: object
       required:
@@ -231,6 +237,12 @@ components:
           items:
             $ref: '#/components/schemas/Artifact'
         logs:
+          type: array
+          items:
+            type: string
+        result_mode:
+          $ref: '#/components/schemas/ResultMode'
+        warnings:
           type: array
           items:
             type: string

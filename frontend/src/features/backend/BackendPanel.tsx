@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { CheckCircle2, PlugZap, Server, XCircle } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, PlugZap, Server, XCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { listJobs, listTools } from '../../lib/api';
 import { loadPreference, savePreference } from '../../lib/storage';
@@ -86,6 +86,20 @@ export function BackendPanel({ apiBaseUrl, onApiBaseUrlChange, onToast }: Backen
           <dd>{toolsQuery.data?.filter((tool) => tool.available).length ?? 0}</dd>
         </div>
       </dl>
+
+      {(jobsQuery.data ?? []).length > 0 ? (
+        <ul className="job-list">
+          {(jobsQuery.data ?? []).slice(0, 3).map((job) => (
+            <li key={job.id}>
+              <AlertTriangle size={15} aria-hidden="true" />
+              <span>
+                {job.name} · {job.status} · {job.result_mode ?? 'pending'}
+              </span>
+              {job.warnings?.[0] ? <small>{job.warnings[0]}</small> : null}
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </section>
   );
 }

@@ -7,6 +7,12 @@ export type Workflow = components['schemas']['Workflow'];
 export type Job = z.infer<typeof jobSchema>;
 export type Tool = z.infer<typeof toolSchema>;
 
+export const resultModeSchema = z.enum([
+  'native',
+  'preview-only',
+  'unsupported',
+] satisfies components['schemas']['ResultMode'][]);
+
 export const workflowSchema = z.enum([
   'photogrammetry_to_gltf',
   'mesh_repair',
@@ -38,6 +44,8 @@ export const jobSchema = z.object({
     .optional(),
   artifacts: z.array(artifactSchema).optional(),
   logs: z.array(z.string()).optional(),
+  result_mode: resultModeSchema.optional(),
+  warnings: z.array(z.string()).optional(),
   error: z.string().optional(),
   created_at: z.string(),
   updated_at: z.string(),

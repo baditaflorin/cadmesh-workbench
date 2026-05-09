@@ -177,6 +177,7 @@ func cloneJob(job *Job) *Job {
 	clone.Inputs = append([]InputFile(nil), job.Inputs...)
 	clone.Artifacts = append([]Artifact(nil), job.Artifacts...)
 	clone.Logs = append([]string(nil), job.Logs...)
+	clone.Warnings = append([]string(nil), job.Warnings...)
 	return &clone
 }
 

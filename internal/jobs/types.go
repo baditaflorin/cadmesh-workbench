@@ -19,6 +19,14 @@ const (
 	StatusFailed    Status = "failed"
 )
 
+type ResultMode string
+
+const (
+	ResultModeNative      ResultMode = "native"
+	ResultModePreviewOnly ResultMode = "preview-only"
+	ResultModeUnsupported ResultMode = "unsupported"
+)
+
 type JobRequest struct {
 	Workflow   Workflow          `json:"workflow" validate:"required"`
 	Name       string            `json:"name" validate:"required,min=1,max=120"`
@@ -34,6 +42,8 @@ type Job struct {
 	Inputs     []InputFile       `json:"inputs,omitempty"`
 	Artifacts  []Artifact        `json:"artifacts,omitempty"`
 	Logs       []string          `json:"logs,omitempty"`
+	ResultMode ResultMode        `json:"result_mode,omitempty"`
+	Warnings   []string          `json:"warnings,omitempty"`
 	Error      string            `json:"error,omitempty"`
 	CreatedAt  time.Time         `json:"created_at"`
 	UpdatedAt  time.Time         `json:"updated_at"`
@@ -57,8 +67,10 @@ type Artifact struct {
 }
 
 type Result struct {
-	Artifacts []Artifact
-	Logs      []string
+	Artifacts  []Artifact
+	Logs       []string
+	ResultMode ResultMode
+	Warnings   []string
 }
 
 func (w Workflow) Valid() bool {

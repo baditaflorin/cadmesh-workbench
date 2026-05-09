@@ -310,6 +310,8 @@ export interface components {
     Workflow: 'photogrammetry_to_gltf' | 'mesh_repair' | 'cad_boolean';
     /** @enum {string} */
     Status: 'queued' | 'running' | 'succeeded' | 'failed';
+    /** @enum {string} */
+    ResultMode: 'native' | 'preview-only' | 'unsupported';
     Tool: {
       name: string;
       binary: string;
@@ -351,6 +353,8 @@ export interface components {
       inputs?: components['schemas']['InputFile'][];
       artifacts?: components['schemas']['Artifact'][];
       logs?: string[];
+      result_mode?: components['schemas']['ResultMode'];
+      warnings?: string[];
       error?: string;
       /** Format: date-time */
       created_at: string;
