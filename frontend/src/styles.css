@@ -264,6 +264,121 @@ input[type='file'] {
   font-weight: 600;
 }
 
+.state-pill {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+
+.state-pill.ok {
+  color: var(--green);
+  border-color: rgba(46, 125, 107, 0.35);
+}
+
+.state-pill.warn {
+  color: var(--orange);
+  border-color: rgba(228, 87, 46, 0.35);
+}
+
+.diagnostic-panel {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.diagnostic-head strong,
+.diagnostic-head span {
+  display: block;
+}
+
+.diagnostic-head strong {
+  font-size: 0.9rem;
+}
+
+.diagnostic-head span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-top: 3px;
+}
+
+.issue-list {
+  display: grid;
+  gap: 7px;
+}
+
+.issue-list strong,
+.activity-log summary,
+.debug-box summary {
+  color: #31414c;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.issue-list ul,
+.activity-log ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.issue-list li,
+.activity-log li {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 9px;
+}
+
+.issue-list span,
+.issue-list small,
+.activity-log span,
+.activity-log small {
+  display: block;
+}
+
+.issue-list span,
+.activity-log span {
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.issue-list small,
+.activity-log small {
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.35;
+  margin-top: 4px;
+}
+
+.debug-box {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 10px;
+}
+
+.debug-box pre {
+  max-height: 280px;
+  overflow: auto;
+  color: #26333d;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
 .stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -313,6 +428,35 @@ input[type='file'] {
 
 .tool-list span {
   min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.job-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  gap: 8px;
+}
+
+.job-list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px 8px;
+  align-items: start;
+  color: #31414c;
+  font-size: 0.82rem;
+}
+
+.job-list svg {
+  color: var(--orange);
+  grid-row: span 2;
+  margin-top: 2px;
+}
+
+.job-list small {
+  color: var(--muted);
+  line-height: 1.3;
   overflow-wrap: anywhere;
 }
 

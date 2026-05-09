@@ -5,7 +5,7 @@ test('loads the workbench and runs a mesh repair interaction', async ({ page }) 
   await page.goto('/cadmesh-workbench/');
 
   await expect(page.getByText('cadmesh-workbench')).toBeVisible();
-  await expect(page.getByText(/v0\.1\.0/)).toBeVisible();
+  await expect(page.getByText(/v0\.2\.0/)).toBeVisible();
   await expect(page.getByRole('link', { name: /open repository/i })).toHaveAttribute(
     'href',
     'https://github.com/baditaflorin/cadmesh-workbench',
@@ -19,10 +19,18 @@ test('loads the workbench and runs a mesh repair interaction', async ({ page }) 
   await expect(canvas).toBeVisible();
   await expect.poll(async () => canvas.boundingBox()).not.toBeNull();
 
-  await page.getByRole('button', { name: /mesh/i }).click();
+  await page
+    .getByLabel(/CAD, mesh, or photos/i)
+    .setInputFiles('test/fixtures/realdata/03-3dbenchy-stl/input.stl');
+  await expect(
+    page.locator('.diagnostic-head strong').filter({ hasText: /STL-ASCII mesh with 4 triangles/i }),
+  ).toBeVisible();
+  await expect(page.locator('.state-pill').filter({ hasText: /loaded some/i })).toBeVisible();
+
+  await page.getByRole('button', { name: 'Mesh', exact: true }).click();
   await page.getByRole('button', { name: /sample/i }).click();
   await expect(page.getByText(/raw triangles/i)).toBeVisible();
-  await page.getByRole('button', { name: /repair/i }).click();
+  await page.getByRole('button', { name: 'Repair', exact: true }).click();
   await expect(page.getByText(/repaired triangles/i)).toBeVisible();
 
   const screenshot = await canvas.screenshot();

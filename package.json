@@ -1,6 +1,6 @@
 {
   "name": "cadmesh-workbench",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "description": "Browser-first CAD, mesh repair, and photogrammetry-to-glTF workbench with a Docker compute API.",
   "type": "module",

@@ -14,6 +14,7 @@ import { ErrorBoundary } from './lib/ErrorBoundary';
 import { Toast } from './lib/Toast';
 import { appConfig } from './lib/config';
 import { BackendPanel } from './features/backend/BackendPanel';
+import { SourceInspector } from './features/intelligence/SourceInspector';
 import { CADPanel } from './features/workbench/CADPanel';
 import { MeshPanel } from './features/workbench/MeshPanel';
 import { PhotoPanel } from './features/photogrammetry/PhotoPanel';
@@ -106,6 +107,7 @@ export function App() {
 
         <main className="workspace">
           <aside className="tool-pane" aria-label="Workbench controls">
+            <SourceInspector onModeChange={setMode} onSceneChange={setScene} onToast={setToast} />
             {panel}
             <BackendPanel apiBaseUrl={apiBaseUrl} onApiBaseUrlChange={setApiBaseUrl} onToast={setToast} />
           </aside>
