@@ -1,6 +1,6 @@
 /* global self, caches, URL, fetch */
 
-const CACHE = 'cadmesh-workbench-v0.1.0';
+const CACHE = 'cadmesh-workbench-v0.2.0';
 const SHELL = ['/cadmesh-workbench/', '/cadmesh-workbench/manifest.webmanifest'];
 
 self.addEventListener('install', (event) => {
