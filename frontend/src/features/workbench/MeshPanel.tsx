@@ -5,13 +5,15 @@ import type { MeshWorkerAPI } from './meshOps.worker';
 import type { MeshData, SceneSpec } from './types';
 
 type MeshPanelProps = {
+  scene: SceneSpec;
   onSceneChange: (scene: SceneSpec) => void;
   onToast: (message: string) => void;
 };
 
-export function MeshPanel({ onSceneChange, onToast }: MeshPanelProps) {
+export function MeshPanel({ scene, onSceneChange, onToast }: MeshPanelProps) {
   const [mesh, setMesh] = useState<MeshData | null>(null);
   const [ratio, setRatio] = useState(0.55);
+  const activeMesh = mesh ?? (scene.kind === 'mesh' ? scene.mesh : null);
   const worker = useMemo(() => {
     const instance = new Worker(new URL('./meshOps.worker.ts', import.meta.url), { type: 'module' });
     return { instance, api: Comlink.wrap<MeshWorkerAPI>(instance) };
@@ -31,7 +33,7 @@ export function MeshPanel({ onSceneChange, onToast }: MeshPanelProps) {
   }
 
   async function repair() {
-    const source = mesh ?? (await worker.api.createSampleMesh());
+    const source = activeMesh ?? (await worker.api.createSampleMesh());
     const repaired = await worker.api.repairMesh(source);
     setMesh(repaired);
     onSceneChange({
@@ -44,7 +46,7 @@ export function MeshPanel({ onSceneChange, onToast }: MeshPanelProps) {
   }
 
   async function decimate() {
-    const source = mesh ?? (await worker.api.createSampleMesh());
+    const source = activeMesh ?? (await worker.api.createSampleMesh());
     const decimated = await worker.api.decimateMesh(source, ratio);
     setMesh(decimated);
     onSceneChange({
@@ -94,15 +96,15 @@ export function MeshPanel({ onSceneChange, onToast }: MeshPanelProps) {
       <dl className="stats">
         <div>
           <dt>Source</dt>
-          <dd>{mesh?.sourceTriangles ?? 0}</dd>
+          <dd>{activeMesh?.sourceTriangles ?? 0}</dd>
         </div>
         <div>
           <dt>Repaired</dt>
-          <dd>{mesh?.repairedTriangles ?? 0}</dd>
+          <dd>{activeMesh?.repairedTriangles ?? 0}</dd>
         </div>
         <div>
           <dt>Decimated</dt>
-          <dd>{mesh?.decimatedTriangles ?? 0}</dd>
+          <dd>{activeMesh?.decimatedTriangles ?? 0}</dd>
         </div>
       </dl>
     </section>

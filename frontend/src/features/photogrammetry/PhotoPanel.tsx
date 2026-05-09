@@ -7,13 +7,15 @@ import type { SceneSpec } from '../workbench/types';
 
 type PhotoPanelProps = {
   apiBaseUrl: string;
+  sourceFiles: File[];
   onSceneChange: (scene: SceneSpec) => void;
   onToast: (message: string) => void;
 };
 
-export function PhotoPanel({ apiBaseUrl, onSceneChange, onToast }: PhotoPanelProps) {
-  const [files, setFiles] = useState<File[]>([]);
+export function PhotoPanel({ apiBaseUrl, sourceFiles, onSceneChange, onToast }: PhotoPanelProps) {
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [quality, setQuality] = useState('preview');
+  const files = selectedFiles.length > 0 ? selectedFiles : sourceFiles;
 
   const mutation = useMutation({
     mutationFn: () => createPhotoJob(files, { name: 'photo scan', quality }, apiBaseUrl),
@@ -44,7 +46,7 @@ export function PhotoPanel({ apiBaseUrl, onSceneChange, onToast }: PhotoPanelPro
           type="file"
           accept="image/*"
           multiple
-          onChange={(event) => setFiles(Array.from(event.currentTarget.files ?? []))}
+          onChange={(event) => setSelectedFiles(Array.from(event.currentTarget.files ?? []))}
         />
         <span className="field-note">{files.length} selected</span>
       </label>

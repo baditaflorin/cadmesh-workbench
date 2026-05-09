@@ -19,3 +19,12 @@ export async function loadPreference(key: string): Promise<string | undefined> {
   });
   return db.get('preferences', key);
 }
+
+export async function deletePreference(key: string) {
+  const db = await openDB(DB_NAME, 1, {
+    upgrade(database) {
+      database.createObjectStore('preferences');
+    },
+  });
+  await db.delete('preferences', key);
+}

@@ -3,6 +3,7 @@ import { AlertTriangle, CheckCircle2, PlugZap, Server, XCircle } from 'lucide-re
 import { useEffect, useState } from 'react';
 import { listJobs, listTools } from '../../lib/api';
 import { loadPreference, savePreference } from '../../lib/storage';
+import { copyText } from '../intelligence/io';
 
 type BackendPanelProps = {
   apiBaseUrl: string;
@@ -41,7 +42,23 @@ export function BackendPanel({ apiBaseUrl, onApiBaseUrlChange, onToast }: Backen
 
   async function check() {
     await saveURL();
-    await Promise.all([toolsQuery.refetch(), jobsQuery.refetch()]);
+    const [tools, jobs] = await Promise.all([toolsQuery.refetch(), jobsQuery.refetch()]);
+    if (tools.error || jobs.error) {
+      onToast('Backend check failed. Verify the API URL and CORS settings.');
+      return;
+    }
+    onToast('Backend check completed');
+  }
+
+  async function copyCurl() {
+    try {
+      await copyText(
+        `curl ${apiBaseUrl.replace(/\/$/, '')}/healthz && curl ${apiBaseUrl.replace(/\/$/, '')}/api/v1/tools`,
+      );
+      onToast('Backend curl command copied');
+    } catch (error) {
+      onToast(error instanceof Error ? error.message : 'Copy failed');
+    }
   }
 
   return (
@@ -60,6 +77,10 @@ export function BackendPanel({ apiBaseUrl, onApiBaseUrlChange, onToast }: Backen
         <button type="button" onClick={check} disabled={toolsQuery.isFetching || jobsQuery.isFetching}>
           <PlugZap size={17} aria-hidden="true" />
           Check
+        </button>
+        <button type="button" onClick={() => void copyCurl()}>
+          <PlugZap size={17} aria-hidden="true" />
+          Curl
         </button>
       </div>
 

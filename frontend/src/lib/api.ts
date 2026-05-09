@@ -110,9 +110,12 @@ export async function createPhotoJob(
   form.set('parameters', JSON.stringify(parameters));
   files.forEach((file) => form.append('files', file));
 
-  const result = await apiClient(baseUrl).POST('/api/v1/jobs', {
-    body: form as unknown as paths['/api/v1/jobs']['post']['requestBody']['content']['multipart/form-data'],
-    bodySerializer: (body) => body as unknown as FormData,
+  const response = await fetch(`${baseUrl.replace(/\/$/, '')}/api/v1/jobs`, {
+    method: 'POST',
+    body: form,
   });
-  return jobSchema.parse(requireData(result, 'Photo job'));
+  if (!response.ok) {
+    throw new Error(`Photo job failed: ${response.status}`);
+  }
+  return jobSchema.parse(await response.json());
 }

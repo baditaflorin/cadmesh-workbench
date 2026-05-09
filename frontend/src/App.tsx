@@ -15,6 +15,7 @@ import { Toast } from './lib/Toast';
 import { appConfig } from './lib/config';
 import { BackendPanel } from './features/backend/BackendPanel';
 import { SourceInspector } from './features/intelligence/SourceInspector';
+import { SettingsPanel } from './features/settings/SettingsPanel';
 import { CADPanel } from './features/workbench/CADPanel';
 import { MeshPanel } from './features/workbench/MeshPanel';
 import { PhotoPanel } from './features/photogrammetry/PhotoPanel';
@@ -44,16 +45,24 @@ export function App() {
   const [toast, setToast] = useState<string | null>(null);
   const [exportNonce, setExportNonce] = useState(0);
   const [apiBaseUrl, setApiBaseUrl] = useState(appConfig.apiBaseUrl);
+  const [photoSourceFiles, setPhotoSourceFiles] = useState<File[]>([]);
 
   const panel = useMemo(() => {
     if (mode === 'mesh') {
-      return <MeshPanel onSceneChange={setScene} onToast={setToast} />;
+      return <MeshPanel scene={scene} onSceneChange={setScene} onToast={setToast} />;
     }
     if (mode === 'photos') {
-      return <PhotoPanel apiBaseUrl={apiBaseUrl} onSceneChange={setScene} onToast={setToast} />;
+      return (
+        <PhotoPanel
+          apiBaseUrl={apiBaseUrl}
+          sourceFiles={photoSourceFiles}
+          onSceneChange={setScene}
+          onToast={setToast}
+        />
+      );
     }
     return <CADPanel scene={scene} apiBaseUrl={apiBaseUrl} onSceneChange={setScene} onToast={setToast} />;
-  }, [apiBaseUrl, mode, scene]);
+  }, [apiBaseUrl, mode, photoSourceFiles, scene]);
 
   return (
     <ErrorBoundary>
@@ -107,9 +116,23 @@ export function App() {
 
         <main className="workspace">
           <aside className="tool-pane" aria-label="Workbench controls">
-            <SourceInspector onModeChange={setMode} onSceneChange={setScene} onToast={setToast} />
+            <SourceInspector
+              scene={scene}
+              onModeChange={setMode}
+              onSceneChange={setScene}
+              onPhotoFilesChange={setPhotoSourceFiles}
+              onToast={setToast}
+            />
             {panel}
             <BackendPanel apiBaseUrl={apiBaseUrl} onApiBaseUrlChange={setApiBaseUrl} onToast={setToast} />
+            <SettingsPanel
+              onToast={setToast}
+              onClearState={() => {
+                setScene(defaultScene);
+                setMode('cad');
+                setPhotoSourceFiles([]);
+              }}
+            />
           </aside>
 
           <section className="viewport-pane" aria-label="3D workbench viewport">

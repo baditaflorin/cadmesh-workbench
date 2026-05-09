@@ -28,10 +28,8 @@ test('loads the workbench and runs a mesh repair interaction', async ({ page }) 
   await expect(page.locator('.state-pill').filter({ hasText: /loaded some/i })).toBeVisible();
 
   await page.getByRole('button', { name: 'Mesh', exact: true }).click();
-  await page.getByRole('button', { name: /sample/i }).click();
-  await expect(page.getByText(/raw triangles/i)).toBeVisible();
   await page.getByRole('button', { name: 'Repair', exact: true }).click();
-  await expect(page.getByText(/repaired triangles/i)).toBeVisible();
+  await expect(page.getByText(/4 repaired triangles/i)).toBeVisible();
 
   const screenshot = await canvas.screenshot();
   const png = PNG.sync.read(screenshot);
